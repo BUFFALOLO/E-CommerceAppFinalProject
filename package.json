@@ -1,4 +1,4 @@
-{
+ {
   "name": "mini-project-advanced-e-commerce-api",
   "private": true,
   "version": "0.0.0",
@@ -51,7 +51,8 @@
   "jest": {
     "testEnvironment": "jest-environment-jsdom",
     "setupFilesAfterEnv": [
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
+      "<rootDir>/src/setupTests.js"
     ],
     "transform": {
       "^.+\\.jsx?$": "babel-jest",
