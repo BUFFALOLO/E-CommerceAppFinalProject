@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import { store } from '../../src/app/store';
+import { store } from '../../../app/store';
 import CreateProductForm from '../CreateProductForm';
 import ShoppingCart from '../ShoppingCart';
 

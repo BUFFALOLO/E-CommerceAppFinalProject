@@ -2,7 +2,7 @@ import React from "react";
 import Register from "./components/Register";
 import Login from "./components/Auth/Login";
 import Logout from "./components/Auth/Logout";
-import { useAuth, AuthProvider } from "./contexts/AuthContext";
+import { useAuth } from "./contexts/AuthContext";
 
 const AppContent = () => {
   const { currentUser } = useAuth();
@@ -25,11 +25,7 @@ const AppContent = () => {
 };
 
 const App = () => {
-  return (
-    <AuthProvider>
-      <AppContent />
-    </AuthProvider>
-  );
+  return <AppContent />;
 };
 
 export default App;
