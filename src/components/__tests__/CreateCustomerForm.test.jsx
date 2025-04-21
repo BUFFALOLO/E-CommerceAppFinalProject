@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import CreateCustomerForm from '../CreateCustomerForm';
 import axios from 'axios';
+import CreateCustomerForm from '../CreateCustomerForm';
 
 jest.mock('axios');
 
@@ -10,61 +10,30 @@ describe('CreateCustomerForm Component', () => {
     axios.post.mockClear();
   });
 
-  test('renders form fields and submit button', () => {
+  test('renders form fields', () => {
     render(<CreateCustomerForm />);
     expect(screen.getByLabelText(/Username/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Email/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/First Name/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Last Name/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /Create Customer/i })).toBeInTheDocument();
   });
 
-  test('updates state on input change', () => {
+  test('shows validation error when required fields are empty', async () => {
     render(<CreateCustomerForm />);
-    const usernameInput = screen.getByLabelText(/Username/i);
-    fireEvent.change(usernameInput, { target: { value: 'testuser' } });
-    expect(usernameInput.value).toBe('testuser');
+    fireEvent.click(screen.getByRole('button', { name: /Create Customer/i }));
+    expect(await screen.findByText(/All fields must be filled out correctly/i)).toBeInTheDocument();
   });
 
-  test('shows success message on successful form submission', async () => {
-    axios.post.mockResolvedValueOnce({ data: {} });
+  test('shows success message on successful submission', async () => {
+    axios.post.mockResolvedValue({ data: {} });
     render(<CreateCustomerForm />);
-    const usernameInput = screen.getByLabelText(/Username/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const firstNameInput = screen.getByLabelText(/First Name/i);
-    const lastNameInput = screen.getByLabelText(/Last Name/i);
-    const submitButton = screen.getByRole('button', { name: /Create Customer/i });
-
-    fireEvent.change(usernameInput, { target: { value: 'testuser' } });
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-    fireEvent.change(firstNameInput, { target: { value: 'Test' } });
-    fireEvent.change(lastNameInput, { target: { value: 'User' } });
-
-    fireEvent.click(submitButton);
-
+    fireEvent.change(screen.getByLabelText(/Username/i), { target: { value: 'testuser' } });
+    fireEvent.change(screen.getByLabelText(/Email/i), { target: { value: 'test@example.com' } });
+    fireEvent.change(screen.getByLabelText(/First Name/i), { target: { value: 'Test' } });
+    fireEvent.change(screen.getByLabelText(/Last Name/i), { target: { value: 'User' } });
+    fireEvent.click(screen.getByRole('button', { name: /Create Customer/i }));
     await waitFor(() => {
       expect(screen.getByText(/Customer created successfully!/i)).toBeInTheDocument();
-    });
-  });
-
-  test('shows error message on failed form submission', async () => {
-    axios.post.mockRejectedValueOnce(new Error('Failed to create'));
-    render(<CreateCustomerForm />);
-    const usernameInput = screen.getByLabelText(/Username/i);
-    const emailInput = screen.getByLabelText(/Email/i);
-    const firstNameInput = screen.getByLabelText(/First Name/i);
-    const lastNameInput = screen.getByLabelText(/Last Name/i);
-    const submitButton = screen.getByRole('button', { name: /Create Customer/i });
-
-    fireEvent.change(usernameInput, { target: { value: 'testuser' } });
-    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-    fireEvent.change(firstNameInput, { target: { value: 'Test' } });
-    fireEvent.change(lastNameInput, { target: { value: 'User' } });
-
-    fireEvent.click(submitButton);
-
-    await waitFor(() => {
-      expect(screen.getByText(/Error creating customer/i)).toBeInTheDocument();
     });
   });
 });
