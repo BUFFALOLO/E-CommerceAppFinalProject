@@ -1,4 +1,4 @@
-djest.mock('firebase/app', () => {
+jest.mock('firebase/app', () => {
   return {
     initializeApp: jest.fn(() => ({})),
   };

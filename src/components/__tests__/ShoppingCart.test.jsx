@@ -2,8 +2,9 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ShoppingCart from '../ShoppingCart';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
+import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
+import cartReducer from '../../features/cart/cartSlice';
 
 // Mock useAuth hook
 jest.mock('../../contexts/AuthContext', () => ({
@@ -12,9 +13,6 @@ jest.mock('../../contexts/AuthContext', () => ({
     userProfile: { name: 'User One' },
   }),
 }));
-
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
 
 describe('ShoppingCart Component', () => {
   let store;
@@ -29,7 +27,13 @@ describe('ShoppingCart Component', () => {
         ],
       },
     };
-    store = mockStore(initialState);
+    store = configureStore({
+      reducer: {
+        cart: cartReducer,
+      },
+      preloadedState: initialState,
+      middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(thunk),
+    });
     store.dispatch = jest.fn();
   });
 
