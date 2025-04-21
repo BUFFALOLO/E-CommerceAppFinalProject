@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../firebase'; 
 import Dropdown from 'react-bootstrap/Dropdown';
+import PropTypes from 'prop-types';
 
 const UserDropdown = ({ currentUser }) => {
   const [showDropdown, setShowDropdown] = useState(false);
@@ -33,6 +34,13 @@ const UserDropdown = ({ currentUser }) => {
       </div>
     </Dropdown>
   );
+};
+
+UserDropdown.propTypes = {
+  currentUser: PropTypes.shape({
+    email: PropTypes.string,
+    displayName: PropTypes.string,
+  }),
 };
 
 export default UserDropdown;

@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useQuery } from '@tanstack/react-query';
 import { collection, query, where, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
-import { Card, Container, Row, Col, Spinner, Alert, Button, Badge } from 'react-bootstrap';
+import { Card, Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../features/cart/cartSlice';
 import CategoryDropdown from './CategoryDropdown';

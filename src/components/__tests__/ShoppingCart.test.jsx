@@ -6,7 +6,7 @@ import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 
 // Mock useAuth hook
-jest.mock('../../../contexts/AuthContext', () => ({
+jest.mock('../../contexts/AuthContext', () => ({
   useAuth: () => ({
     currentUser: { uid: 'user1', email: 'user1@example.com' },
     userProfile: { name: 'User One' },

@@ -55,7 +55,7 @@ function CreateCustomerForm() {
 
   const createNewCustomer = async () => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/users`, newCustomer);
+      await axios.post(`${API_BASE_URL}/users`, newCustomer);
       setNewCustomer({
         email: "",
         username: "",

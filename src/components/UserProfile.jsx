@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import PropTypes from 'prop-types';
 
 const UserProfile = () => {
   const { currentUser, userProfile, updateUserProfile, deleteUserAccount } = useAuth();
@@ -54,6 +55,13 @@ const UserProfile = () => {
       </button>
     </div>
   );
+};
+
+UserProfile.propTypes = {
+  currentUser: PropTypes.object,
+  userProfile: PropTypes.object,
+  updateUserProfile: PropTypes.func,
+  deleteUserAccount: PropTypes.func,
 };
 
 export default UserProfile;
