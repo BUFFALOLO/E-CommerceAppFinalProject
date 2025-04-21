@@ -20,10 +20,9 @@ button {
 }
 
 button:hover {
-  background-color: #6a1b9a; /* Darker purple on hover */
+  background-color: #6a1b9a; 
 }
 
-/* Custom navbar styles */
 .navbar-custom {
   background-color: black;
 }
@@ -51,7 +50,7 @@ button:hover {
 }
 
 .btn:hover, .btn:focus, .btn:active {
-  background-color: #6a1b9a !important; /* Darker purple on hover/focus/active */
+  background-color: #6a1b9a !important; 
   color: white !important;
   box-shadow: none !important;
   outline: none !important;

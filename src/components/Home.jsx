@@ -52,7 +52,7 @@ function Home() {
 
     return (
         <div style={divStyles}>
-            <h1 className="my-5 display-3">Implement Firebase into React E-Commerce App</h1>
+            <h1 className="my-5 display-3">Implementing CI/CD Pipeline for React E-Commerce App</h1>
             <p className="lead">Completed by Lauren Farrell</p>
 
             <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase'; // Updated import path
+import { auth } from '../firebase'; 
 import Dropdown from 'react-bootstrap/Dropdown';
 
 const UserDropdown = ({ currentUser }) => {

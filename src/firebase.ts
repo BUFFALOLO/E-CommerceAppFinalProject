@@ -12,7 +12,6 @@ const firebaseConfig = {
   measurementId: "G-7MMMCTLS7W"
 };
 
-// Initialize Firebase
 let app;
 try {
     app = initializeApp(firebaseConfig);
@@ -21,7 +20,6 @@ try {
     throw new Error("Failed to initialize Firebase. Please check your configuration.");
 }
 
-// Initialize Firebase Authentication and Firestore and export them
 const auth = getAuth(app);
 const db = getFirestore(app);
 

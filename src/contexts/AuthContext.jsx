@@ -18,13 +18,11 @@ export function AuthProvider({ children }) {
     const unsubscribe = onAuthStateChanged(auth, async (user) => {
       setCurrentUser(user);
       if (user) {
-        // Fetch user profile from Firestore
         const userDocRef = doc(db, 'users', user.uid);
         const userDocSnap = await getDoc(userDocRef);
         if (userDocSnap.exists()) {
           setUserProfile(userDocSnap.data());
         } else {
-          // If no profile exists, create one with basic info
           const profileData = {
             email: user.email,
             createdAt: new Date(),

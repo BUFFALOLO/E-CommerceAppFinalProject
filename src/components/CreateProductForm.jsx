@@ -11,7 +11,7 @@ function ProductForm() {
     title: "", 
     price: "", 
     description: "",
-    image: "", // Added image field
+    image: "", 
     category: "electronics"
   });
   const [error, setError] = useState("");
@@ -46,22 +46,22 @@ function ProductForm() {
         title: newProduct.title,
         price: parseFloat(newProduct.price),
         description: newProduct.description,
-        image: newProduct.image || null, // Handle undefined value
+        image: newProduct.image || null, 
         category: newProduct.category
       });
       setNewProduct({ 
         title: "", 
         price: "", 
         description: "",
-        image: "", // Reset image field
+        image: "", 
         category: "electronics"
       }); 
       setSuccess("Product created successfully!");
       setError("");
       setValidated(false);
     } catch (error) {
-      console.error("Error creating product:", error); // Enhanced error logging
-      setError(`Error creating product: ${error.message}`); // More detailed error message
+      console.error("Error creating product:", error); 
+      setError(`Error creating product: ${error.message}`); 
       setSuccess("");
     }
   };

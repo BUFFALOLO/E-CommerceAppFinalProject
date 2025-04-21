@@ -2,7 +2,6 @@ import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import ProductForm from '../CreateProductForm';
 
-// Mock the Firestore addDoc function to avoid actual database calls
 jest.mock('firebase/firestore', () => ({
   collection: jest.fn(),
   addDoc: jest.fn(() => Promise.resolve()),
@@ -37,7 +36,6 @@ describe('ProductForm Component', () => {
       expect(screen.getByText(/Product created successfully!/i)).toBeInTheDocument();
     });
 
-    // After submission, inputs should be reset
     expect(titleInput.value).toBe('');
     expect(priceInput.value).toBe('');
     expect(descriptionInput.value).toBe('');

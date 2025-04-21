@@ -12,7 +12,6 @@ const Register = () => {
     e.preventDefault();
     setError(null);
 
-    // Validation
     if (!email || !password) {
       setError("Email and password are required.");
       return;
