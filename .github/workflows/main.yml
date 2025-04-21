@@ -45,5 +45,5 @@ jobs:
 
     - name: Deploy to Vercel
       env:
-        VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        VERCEL_TOKEN: fzgQXCYWzwMfOoZEOPdklyLO
       run: vercel --prod --token $VERCEL_TOKEN --confirm
