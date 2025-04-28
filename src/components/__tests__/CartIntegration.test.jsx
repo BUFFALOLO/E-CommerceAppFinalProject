@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { act } from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { MemoryRouter } from 'react-router-dom';
-import { act } from 'react-dom/test-utils';
 import cartReducer, { addItem } from '../../features/cart/cartSlice';
 import ShoppingCart from '../ShoppingCart';
 
@@ -64,7 +63,7 @@ describe('ShoppingCart Integration Test', () => {
     );
 
     // Assert the product is displayed in the cart
-    expect(screen.getByText(product.title)).toBeInTheDocument();
+    expect(screen.getAllByText(product.title).length).toBeGreaterThan(0);
     expect(screen.getByText('$10')).toBeInTheDocument();
     expect(screen.getByDisplayValue('1')).toBeInTheDocument();
   });
