@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import UserDropdown from '../UserDropdown';
 import { signOut } from 'firebase/auth';
 
@@ -19,8 +20,14 @@ describe('UserDropdown', () => {
   });
 
   test('renders dropdown toggle and menu items', () => {
-    render(<UserDropdown currentUser={currentUser} />);
+    render(
+      <MemoryRouter>
+        <UserDropdown currentUser={currentUser} />
+      </MemoryRouter>
+    );
     expect(screen.getByRole('button', { name: /user/i })).toBeInTheDocument();
+    const toggleButton = screen.getByRole('button', { name: /user/i });
+    fireEvent.click(toggleButton);
     expect(screen.getByText(/profile/i)).toBeInTheDocument();
     expect(screen.getByText(/logout/i)).toBeInTheDocument();
     expect(screen.getByText(currentUser.displayName)).toBeInTheDocument();
@@ -28,7 +35,11 @@ describe('UserDropdown', () => {
   });
 
   test('toggles dropdown visibility on toggle event', () => {
-    render(<UserDropdown currentUser={currentUser} />);
+    render(
+      <MemoryRouter>
+        <UserDropdown currentUser={currentUser} />
+      </MemoryRouter>
+    );
     const toggleButton = screen.getByRole('button', { name: /user/i });
     fireEvent.click(toggleButton);
     // The dropdown menu should be visible after toggle
@@ -36,7 +47,11 @@ describe('UserDropdown', () => {
   });
 
   test('calls signOut on clicking logout', () => {
-    render(<UserDropdown currentUser={currentUser} />);
+    render(
+      <MemoryRouter>
+        <UserDropdown currentUser={currentUser} />
+      </MemoryRouter>
+    );
     const toggleButton = screen.getByRole('button', { name: /user/i });
     fireEvent.click(toggleButton);
     const logoutItem = screen.getByText(/logout/i);

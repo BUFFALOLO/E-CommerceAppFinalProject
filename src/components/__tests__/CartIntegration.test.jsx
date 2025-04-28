@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
+import { MemoryRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 import cartReducer, { addItem } from '../../features/cart/cartSlice';
 import ShoppingCart from '../ShoppingCart';
 
@@ -32,7 +34,9 @@ describe('ShoppingCart Integration Test', () => {
   test('updates cart when adding a product', () => {
     render(
       <Provider store={store}>
-        <ShoppingCart />
+        <MemoryRouter>
+          <ShoppingCart />
+        </MemoryRouter>
       </Provider>
     );
 
@@ -46,12 +50,16 @@ describe('ShoppingCart Integration Test', () => {
       price: 10,
       image: 'test-image.jpg'
     };
-    store.dispatch(addItem(product));
+    act(() => {
+      store.dispatch(addItem(product));
+    });
 
     // Re-render component with updated store state
     render(
       <Provider store={store}>
-        <ShoppingCart />
+        <MemoryRouter>
+          <ShoppingCart />
+        </MemoryRouter>
       </Provider>
     );
 
