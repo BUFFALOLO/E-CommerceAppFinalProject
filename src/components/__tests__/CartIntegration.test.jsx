@@ -1,5 +1,5 @@
 import React, { act } from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { configureStore } from '@reduxjs/toolkit';
 import { MemoryRouter } from 'react-router-dom';
@@ -14,8 +14,16 @@ jest.mock('../../contexts/AuthContext', () => ({
   }),
 }));
 
+// Mock firebase/firestore
+jest.mock('firebase/firestore', () => ({
+  collection: jest.fn(),
+  addDoc: jest.fn(),
+  serverTimestamp: jest.fn(() => new Date()),
+}));
+
 describe('ShoppingCart Integration Test', () => {
   let store;
+  let component;
 
   beforeEach(() => {
     store = configureStore({
@@ -28,17 +36,17 @@ describe('ShoppingCart Integration Test', () => {
         }
       }
     });
-  });
 
-  test('updates cart when adding a product', () => {
-    render(
+    component = render(
       <Provider store={store}>
         <MemoryRouter>
           <ShoppingCart />
         </MemoryRouter>
       </Provider>
     );
+  });
 
+  test('updates cart when adding a product', () => {
     // Initially cart is empty
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
 
@@ -54,7 +62,7 @@ describe('ShoppingCart Integration Test', () => {
     });
 
     // Re-render component with updated store state
-    render(
+    component.rerender(
       <Provider store={store}>
         <MemoryRouter>
           <ShoppingCart />
