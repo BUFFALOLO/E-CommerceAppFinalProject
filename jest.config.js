@@ -10,6 +10,8 @@ export default {
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock CSS imports
     '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js', // Mock image imports
+    '^firebase/firestore$': '<rootDir>/src/__mocks__/firebase/firestore.js',
+    '^firebase/auth$': '<rootDir>/src/__mocks__/firebase/auth.js'
   },
   setupFilesAfterEnv: ['@testing-library/jest-dom'],
 };

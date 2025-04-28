@@ -16,6 +16,7 @@ jest.mock('../../contexts/AuthContext', () => ({
 
 // Mock firebase/firestore
 jest.mock('firebase/firestore', () => ({
+  getFirestore: jest.fn(() => ({})),
   collection: jest.fn(),
   addDoc: jest.fn(),
   serverTimestamp: jest.fn(() => new Date()),
