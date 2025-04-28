@@ -43,3 +43,4 @@ jobs:
           alias-domains: ''
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+          VERCEL_DEBUG: 1
