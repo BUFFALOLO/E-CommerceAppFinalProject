@@ -4,6 +4,13 @@ import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import AddDataForm from '../AddDataForm';
 import { addDoc } from 'firebase/firestore';
 
+// Mock the entire src/firebase.ts module
+jest.mock('../../firebase', () => ({
+  auth: {},
+  db: {},
+}));
+
+// Mock firestore functions used in AddDataForm
 jest.mock('firebase/firestore', () => ({
   addDoc: jest.fn(),
   collection: jest.fn(),
