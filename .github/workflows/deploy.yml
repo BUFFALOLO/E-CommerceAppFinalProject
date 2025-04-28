@@ -2,7 +2,7 @@ name: Deploy to Vercel
 
 on:
   workflow_run:
-    workflows: ["CI"]  # Replace "CI" with the actual name of your CI workflow
+    workflows: ["CI"]
     types:
       - completed
 
