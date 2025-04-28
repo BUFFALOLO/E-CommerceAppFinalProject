@@ -7,7 +7,6 @@ const loadCartFromSessionStorage = () => {
       return { items: [] };
     }
     const parsedCart = JSON.parse(serializedCart);
-    // Filter out invalid items missing id, title, or price
     if (parsedCart.items && Array.isArray(parsedCart.items)) {
       parsedCart.items = parsedCart.items.filter(item =>
         item.id && item.title && typeof item.price === 'number'
@@ -30,7 +29,6 @@ export const cartSlice = createSlice({
   reducers: {
     addItem: (state, action) => {
       const payload = action.payload;
-      // Validate payload has id, title, and price
       if (!payload.id || !payload.title || typeof payload.price !== 'number') {
         console.warn('Invalid product payload for addItem:', payload);
         return;

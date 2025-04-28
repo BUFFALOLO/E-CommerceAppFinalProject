@@ -6,7 +6,6 @@ import { MemoryRouter } from 'react-router-dom';
 import cartReducer, { addItem } from '../../features/cart/cartSlice';
 import ShoppingCart from '../ShoppingCart';
 
-// Mock useAuth hook
 jest.mock('../../contexts/AuthContext', () => ({
   useAuth: () => ({
     currentUser: { uid: 'test-uid', email: 'test@example.com' },
@@ -14,7 +13,6 @@ jest.mock('../../contexts/AuthContext', () => ({
   }),
 }));
 
-// Mock firebase/firestore
 jest.mock('firebase/firestore', () => ({
   getFirestore: jest.fn(() => ({})),
   collection: jest.fn(),
@@ -48,10 +46,8 @@ describe('ShoppingCart Integration Test', () => {
   });
 
   test('updates cart when adding a product', () => {
-    // Initially cart is empty
     expect(screen.getByText(/your cart is empty/i)).toBeInTheDocument();
 
-    // Dispatch addItem action to simulate adding a product
     const product = {
       id: '1',
       title: 'Test Product',
@@ -62,7 +58,6 @@ describe('ShoppingCart Integration Test', () => {
       store.dispatch(addItem(product));
     });
 
-    // Re-render component with updated store state
     component.rerender(
       <Provider store={store}>
         <MemoryRouter>
@@ -71,7 +66,6 @@ describe('ShoppingCart Integration Test', () => {
       </Provider>
     );
 
-    // Assert the product is displayed in the cart
     expect(screen.getAllByText(product.title).length).toBeGreaterThan(0);
     expect(screen.getByText('$10')).toBeInTheDocument();
     expect(screen.getByDisplayValue('1')).toBeInTheDocument();

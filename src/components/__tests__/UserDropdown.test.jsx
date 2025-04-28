@@ -42,7 +42,6 @@ describe('UserDropdown', () => {
     );
     const toggleButton = screen.getByRole('button', { name: /user/i });
     fireEvent.click(toggleButton);
-    // The dropdown menu should be visible after toggle
     expect(screen.getByText(/profile/i)).toBeVisible();
   });
 
