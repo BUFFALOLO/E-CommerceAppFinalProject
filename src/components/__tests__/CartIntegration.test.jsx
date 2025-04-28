@@ -1,9 +1,9 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import configureStore from 'redux-mock-store';
+import { configureStore } from '@reduxjs/toolkit';
+import cartReducer, { addItem } from '../../features/cart/cartSlice';
 import ShoppingCart from '../ShoppingCart';
-import { addItem } from '../../features/cart/cartSlice';
 
 // Mock useAuth hook
 jest.mock('../../contexts/AuthContext', () => ({
@@ -13,29 +13,19 @@ jest.mock('../../contexts/AuthContext', () => ({
   }),
 }));
 
-const mockStore = configureStore([]);
-
 describe('ShoppingCart Integration Test', () => {
   let store;
 
   beforeEach(() => {
-    store = mockStore({
-      cart: {
-        items: []
-      }
-    });
-
-    // Mock dispatch to update the store state
-    store.dispatch = jest.fn((action) => {
-      if (action.type === addItem.type) {
-        const existingItem = store.getState().cart.items.find(item => item.id === action.payload.id);
-        if (existingItem) {
-          existingItem.quantity += 1;
-        } else {
-          store.getState().cart.items.push({ ...action.payload, quantity: 1 });
+    store = configureStore({
+      reducer: {
+        cart: cartReducer,
+      },
+      preloadedState: {
+        cart: {
+          items: []
         }
       }
-      return action;
     });
   });
 

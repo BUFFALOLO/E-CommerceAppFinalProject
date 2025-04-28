@@ -19,7 +19,7 @@ const UserDropdown = ({ currentUser }) => {
   const displayName = currentUser?.displayName;
 
   return (
-    <Dropdown onToggle={() => setShowDropdown(!showDropdown)} show={showDropdown}>
+    <Dropdown onToggle={(isOpen) => setShowDropdown(isOpen)} show={showDropdown}>
       <Dropdown.Toggle variant="success" id="dropdown-basic">
         User
       </Dropdown.Toggle>
