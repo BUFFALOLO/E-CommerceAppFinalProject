@@ -5,6 +5,14 @@ import configureStore from 'redux-mock-store';
 import ShoppingCart from '../ShoppingCart';
 import { addItem } from '../../features/cart/cartSlice';
 
+// Mock useAuth hook
+jest.mock('../../contexts/AuthContext', () => ({
+  useAuth: () => ({
+    currentUser: { uid: 'test-uid', email: 'test@example.com' },
+    userProfile: { name: 'Test User' }
+  }),
+}));
+
 const mockStore = configureStore([]);
 
 describe('ShoppingCart Integration Test', () => {
