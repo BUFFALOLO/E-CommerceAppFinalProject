@@ -5,11 +5,11 @@ export default {
   },
   moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   transformIgnorePatterns: [
-    '/node_modules/(?!firebase|@firebase)/', // Transform firebase modules as well
+    '/node_modules/(?!firebase|@firebase)/', 
   ],
   moduleNameMapper: {
-    '\\.(css|less|scss|sass)$': 'identity-obj-proxy', // Mock CSS imports
-    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js', // Mock image imports
+    '\\.(css|less|scss|sass)$': 'identity-obj-proxy', 
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js', 
     '^firebase/firestore$': '<rootDir>/src/__mocks__/firebase/firestore.js',
     '^firebase/auth$': '<rootDir>/src/__mocks__/firebase/auth.js'
   },

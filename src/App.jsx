@@ -1,7 +1,6 @@
 import Home from "./components/Home";
 import NavigationBar from "./components/NavBar";
 import ProductsMenu from "./components/ProductsMenu";
-// Removed import of OrderProcessing
 import OrderHistory from "./components/OrderHistory";
 import CustomerForm from "./components/CreateCustomerForm";
 import UpdateCustomerForm from "./components/UpdateCustomerForm";
@@ -15,7 +14,7 @@ import { Route, Routes } from "react-router-dom";
 import CustomersAndAccountsMenu from "./components/CustomersAndAccountsMenu";
 import ShoppingCart from "./components/ShoppingCart";
 import Login from "./components/Auth/Login";
-import UserProfile from "./components/UserProfile"; // Import UserProfile
+import UserProfile from "./components/UserProfile"; 
 
 function App() {
   return (
