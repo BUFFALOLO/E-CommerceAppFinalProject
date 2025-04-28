@@ -17,6 +17,10 @@ jest.mock('firebase/firestore', () => ({
 }));
 
 describe('AddDataForm', () => {
+  beforeAll(() => {
+    window.alert = jest.fn();
+  });
+
   beforeEach(() => {
     jest.clearAllMocks();
   });

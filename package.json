@@ -43,14 +43,5 @@
     "jest-environment-jsdom": "^29.7.0",
     "redux-mock-store": "^1.5.5",
     "vite": "^6.2.5"
-  },
-  "jest": {
-    "testEnvironment": "jest-environment-jsdom",
-    "setupFilesAfterEnv": [
-      "@testing-library/jest-dom"
-    ],
-    "transform": {
-      "^.+\\.jsx?$": "babel-jest"
-    }
   }
 }
