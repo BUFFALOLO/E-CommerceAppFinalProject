@@ -33,5 +33,3 @@ The e-commerce project requires a streamlined Continuous Integration and Continu
 - Define deployment jobs to deploy the application to Vercel.
 - Ensure that the deployment only occurs after the CI tests have passed successfully.
 
-
-
